@@ -1,0 +1,55 @@
+<div class="master-distributor-list">
+  <div class="grid_main">
+    <div class="grid_header">
+      <h6>PayIn Commericals List</h6>
+      <button class="btn btn-primary cButton add__btn" [routerLink]="['/create-payin-cslab']">
+        <span><i class="fas fa-plus"></i></span>
+      </button>
+    </div>
+
+    <div class="grid_body">
+      <table class=" table-responsive table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>PG Id</th>
+            <th>PayIn Gateway Name</th>
+            <th>Payment Mode </th>
+            <th>Fee</th>
+            <th>Type</th>
+            <th>SuperAdmin Id</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor="let commericals of commericalsList
+          | paginate: { itemsPerPage: sharedService.tableSize, currentPage: sharedService.page, totalItems: sharedService.totalPages }">
+            <td>{{commericals.payInCommericalDetailsId}}</td>
+            <td>{{commericals.payInDetailsId}}</td>
+            <td>{{commericals.paymentMode}}</td>
+              <td>{{commericals.fee}}</td>
+                  <td>{{commericals.type}}</td>
+              <td>{{commericals.superAdminDetailsId}}</td>
+             <td>
+              <div class="d-flex justify-content-left align-items-center">
+                <a class="" [routerLink]="['/create-payin-cslab',commericals.payInCommericalDetailsId]">
+                  <span class="edit_icon">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </span>
+                </a>
+          
+             
+              </div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+       <div class="text-center mt-3" *ngIf="sharedService.totalPages >= 1">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </div>
+
+    </div>
+  </div>
+</div>

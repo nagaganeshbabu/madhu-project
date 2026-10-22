@@ -1,0 +1,134 @@
+<div class="profile-component">
+    <div class="grid_main mb-5">
+        <div class="grid_header">
+            <div class="row">
+                <h6 class="mb-3">User Information</h6>
+            </div>
+        </div>
+        <div class="grid_body">
+            <form name="form" #f="ngForm" (ngSubmit)="f.form.valid &&updateUserData(userInfoData)">
+                <div class="row user_information">
+                    <div class="col-5 mb-3">
+                        <div class="">
+                            <label class="">First Name</label>
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="fisrtname"
+                                    [(ngModel)]="userInfoData.fname" #fname="ngModel" required
+                                    [ngClass]="{ 'is-invalid': f.submitted && fname.errors }" />
+                                <div *ngIf="f.submitted && fname.errors" class="invalid-feedback">
+                                    <div *ngIf="fname.errors['required']">First Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 mb-3">
+                        <div class="">
+                            <label class="">Last Name</label>
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="lastName" [(ngModel)]="userInfoData.lname"
+                                    #lname="ngModel" required
+                                    [ngClass]="{ 'is-invalid': f.submitted && lname.errors }" />
+                                <div *ngIf="f.submitted && lname.errors" class="invalid-feedback">
+                                    <div *ngIf="lname.errors['required']">Last Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 mb-3">
+                        <div class="">
+                            <label class="">User Email</label>
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="email" [(ngModel)]="userInfoData.email"
+                                    #email="ngModel" required
+                                    [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
+                                <div *ngIf="f.submitted && email.errors" class="invalid-feedback">
+                                    <div *ngIf="email.errors['required']">EmailId is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 mb-3">
+                        <div class="">
+                            <label class="">Mobile</label>
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="mobile" [(ngModel)]="userInfoData.mobile"
+                                    #mobile="ngModel" required
+                                    [ngClass]="{ 'is-invalid': f.submitted && mobile.errors }" />
+                                <div *ngIf="f.submitted && mobile.errors" class="invalid-feedback">
+                                    <div *ngIf="email.errors['required']">mobile is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row justify-content-end align-items-center">
+                            <div class="col-auto button-wrapper mt-0 ">
+                                <button class="btn btn-update" type="submit">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+
+        </div>
+    </div>
+    <div class="grid_main mb-5">
+        <div class="grid_header">
+            <div class="row">
+                <h6 class="mb-3">Change Password</h6>
+            </div>
+        </div>
+        <div class="grid_body">
+            <form name="form" #f="ngForm" (ngSubmit)="f.form.valid &&updatePassword(userInfoData)">
+                <div class="row user_information">
+                    <div class="col-5 mb-3">
+                        <div class="">
+                            <label class="">User Email</label>
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="email" disabled
+                                    [(ngModel)]="userInfoData.email" #email="ngModel" required
+                                    [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-5 mb-3">
+                        <div class="">
+                            <label class="">New Password</label>
+                            <div class="input-group">
+                                <input type="password" name="password" class="form-control"
+                                    [(ngModel)]="userInfoData.password" #password="ngModel" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 mb-3">
+                        <div class="">
+                            <label class="">Confirm Password</label>
+                            <div class="input-group">
+                                <input type="password" name="confirmPassword" class="form-control"
+                                    [(ngModel)]="userInfoData.confirmPassword" [mustMatch]="'password'"
+                                    #confirmPassword="ngModel" required />
+
+                            </div>
+                            <div *ngIf="confirmPassword.errors?.mustMatch && confirmPassword.touched"
+                                class="text-danger">Passwords do not match
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row justify-content-end align-items-center">
+                        <div class="col-auto button-wrapper mt-0 ">
+                            <button class="btn btn-update" type="submit">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

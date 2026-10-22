@@ -1,0 +1,108 @@
+<div class="add-admin-page">
+    <div class="grid_main">
+        <div class="grid_header">
+            <h6>PayIn Configuration</h6>
+        </div>
+
+        <div class="grid_body">
+            <form #payoutForm="ngForm" (ngSubmit)="onSubmit(payoutForm)">
+                <div class="row align-items-end payout-row">
+                    <div class="col-md-3">
+                        <label class="myLabel">PayIn Name</label>
+                        <input type="text" class="form-control" placeholder="Enter  name" name="payoutName"
+                            required pattern="^[A-Za-z ]+$" [(ngModel)]="payoutConfig.payName" #payoutName="ngModel"
+                            [ngClass]="{ 'is-invalid': payoutName.invalid && payoutForm.submitted }" />
+                        <div *ngIf="payoutName.invalid && payoutForm.submitted" class="invalid-feedback">
+                            <div *ngIf="payoutName.errors?.['required']">PayIn name is required</div>
+                            <div *ngIf="payoutName.errors?.['pattern']">Only alphabets allowed</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="myLabel">PayIn Sub-Type</label>
+                       <input type="text" class="form-control" placeholder="type" name="type"
+                            required pattern="^[A-Za-z ]+$" [(ngModel)]="payoutConfig.type" #type="ngModel"
+                            [ngClass]="{ 'is-invalid': type.invalid && payoutForm.submitted }" />
+                        <div *ngIf="type.invalid && payoutForm.submitted" class="invalid-feedback">
+                            <div *ngIf="type.errors?.['required']">Payin type is required</div>
+                            <div *ngIf="type.errors?.['pattern']">Only alphabets allowed</div>
+                        </div>
+                    </div>
+
+                    <!-- Client ID -->
+                    <div class="col-md-3">
+                        <label class="myLabel">Client ID /KEY</label>
+                        <input type="text" class="form-control" placeholder="Enter client ID" name="clientId" required
+                            [(ngModel)]="payoutConfig.clientId" #clientId="ngModel"
+                            [ngClass]="{ 'is-invalid': clientId.invalid && payoutForm.submitted }" />
+                        <div *ngIf="clientId.invalid && payoutForm.submitted" class="invalid-feedback">
+                            Client ID /KEY is required
+                        </div>
+                    </div>
+
+                    <!-- Client Secret -->
+                    <div class="col-md-3">
+                        <label class="myLabel">Client Secret/SALT </label>
+                        <input type="text" class="form-control" placeholder="Enter client secret" name="clientSecret"
+                            required [(ngModel)]="payoutConfig.clientSecret" #clientSecret="ngModel"
+                            [ngClass]="{ 'is-invalid': clientSecret.invalid && payoutForm.submitted }" />
+                        <div *ngIf="clientSecret.invalid && payoutForm.submitted" class="invalid-feedback">
+                            Client Secret /SALT is required
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row align-items-end payout-row">
+                        <div class="col-md-3">
+                        <label class="myLabel">Instant Settlement Percentage</label>
+                        <input type="text" class="form-control"
+                         placeholder="Enter Percentage" name="isp"
+                             [(ngModel)]="payoutConfig.isp" #isp="ngModel"/>
+                      
+                    </div>
+
+                       <div class="col-md-3">
+                        <label class="myLabel">Merchant-Id</label>
+                        <input type="text" class="form-control"
+                         placeholder="Enter MID" name="mid"
+                             [(ngModel)]="payoutConfig.mid" #mid="ngModel"/>
+                      
+                    </div>
+<!---
+  <div class="col-md-3">
+                        <label class="myLabel">Success CallBack Url</label>
+                        <input type="text" class="form-control"
+                         placeholder="Enter Success Url" name="sck"
+                             [(ngModel)]="payoutConfig.successCallBackUrl" #successCallBackUrl="ngModel"/>
+                      
+                    </div>
+                       <div class="col-md-3">
+                        <label class="myLabel">Failure CallBack Url</label>
+                        <input type="text" class="form-control"
+                         placeholder="Enter FailureCallBackUrl" name="fck"
+                             [(ngModel)]="payoutConfig.failureCallBackUrl" #failureCallBackUrl="ngModel"/>
+                      
+                    </div>
+
+
+-->
+                     
+
+
+
+                </div>
+                <div class="row justify-content-end align-items-center mt-3">
+                    <div class="col-auto button-wrapper">
+                        <button type="button" class="btn btn-danger btn-cancel cButton"
+                            routerLink="/payment-gateway-list">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-success btn-create cButton" *ngIf="!isEdit">Create</button>
+                        <button type="submit" class="btn btn-primary btn-update cButton" *ngIf="isEdit">Update</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

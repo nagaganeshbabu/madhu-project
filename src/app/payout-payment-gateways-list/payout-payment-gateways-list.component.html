@@ -1,0 +1,49 @@
+<div class="master-distributor-list">
+  <div class="grid_main">
+    <div class="grid_header">
+      <h6>Payment  Payout Gateways List</h6>
+      <button *ngIf="id ==='0' " class="btn btn-primary cButton add__btn" 
+      [routerLink]="['/add-payout-payment-gateway']" >
+        <span><i class="fas fa-plus"></i></span>
+      </button>
+    </div>
+
+    <div class="grid_body">
+      <table class=" table-responsive table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>PG Id</th>
+            <th>Gateway Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+   <tbody>
+         <tr *ngFor="let paymentGateway of paymentGatewaysList
+          | paginate: { itemsPerPage: sharedService.tableSize, currentPage: sharedService.page, totalItems: sharedService.totalPages }">
+      <td>{{paymentGateway.payId}}</td>
+       <td>{{paymentGateway.payName}}</td>
+         <td>
+              <div class="d-flex justify-content-left align-items-center">
+                <a class="" [routerLink]="['/add-payout-payment-gateway',paymentGateway.payId]">
+                  <span class="edit_icon">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </span>
+                </a>
+            <span *ngIf="paymentGateway.isActive === 'n' " (click)="block(paymentGateway.payId)" style="cursor:pointer"><i class="fas fa-ban text-success fs-6 ms-2"></i></span>
+                 <span  *ngIf="paymentGateway.isActive === 'y' "  (click)="block(paymentGateway.payId)" style="cursor:pointer"><i class="fas fa-ban text-danger fs-6 ms-2"></i></span>
+              
+            </div>
+            </td>
+         </tr>
+           
+        </tbody>
+      </table>
+
+       <div class="text-center mt-3" *ngIf="sharedService.totalPages >= 1">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </div>
+
+    </div>
+  </div>
+</div>

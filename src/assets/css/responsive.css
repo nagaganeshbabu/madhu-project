@@ -1,0 +1,56 @@
+@media (max-width:1600px) {}
+@media (max-width:1500px) {}
+@media (max-width:1400px) {}
+@media (max-width:1300px) {}
+@media (max-width:1200px) {}
+@media (max-width:1100px) {}
+@media (max-width:1000px) {}
+@media (max-width:991px) {
+    .container_section {
+    width: 100%;
+    padding: 0px 10px;
+    margin: 0px auto;
+}
+.content {
+    padding: 10px;
+}
+.page-headding h1 {
+    font-size: 18px;
+    line-height: 26px;
+}
+.pg-sections .card-title {
+    font-weight: 600;
+    color: #fff;
+    font-size: 15px;
+}
+.pg-sections .card-balance {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 10px;
+    color: #fff;
+}
+
+    .header-right-section .navbar-nav {
+        margin-bottom: 0px !important;
+        padding: 20px 0px;
+    }
+    .header-right-section .navbar-nav li{
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+button.navbar-toggler {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+.navbar-toggler:focus{
+    box-shadow: none !important;
+}
+}
+@media (max-width:880px) {}
+@media (max-width:767px) {}
+@media (max-width:680px) {}
+@media (max-width:580px) {}
+@media (max-width:480px) {}

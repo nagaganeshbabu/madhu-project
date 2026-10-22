@@ -1,0 +1,172 @@
+<div class="dashboard-component chart">
+  <div class="row">
+
+    <!-- Seva Chart -->
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
+      <div class="grid_main">
+        <div class="grid_header d-flex justify-content-between align-items-center">
+          <h6>Seva Chart</h6>
+          <div>
+            <div class="d-flex justify-content-left align-items-center" *ngIf="sevaChartData.length !== 0">
+              <span class="me-2" >Total Amount :</span>
+              <h6> ₹{{totalAmountSeva}} </h6>
+            </div>
+          </div>
+        </div>
+        <div class="grid_body">
+          <div class="date-picker-section">
+            <table class="table table-bordered table-striped" *ngIf="sevaChartData.length > 0">
+              <thead>
+                <tr>
+                  <th>Payment Mode</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of sevaChartData">
+                  <td>{{ item.paymentMode }}</td>
+                  <td>₹{{ item.amount }}</td>
+                  <td>{{ item.createdOn | date }}</td>
+                  <td>{{ item.type }}</td>
+                  <td>{{ item.ticketsQty }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="no-data-available" *ngIf="sevaChartData.length === 0">No data available</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prasadham Chart -->
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
+      <div class="grid_main">
+        <div class="grid_header d-flex justify-content-between align-items-center">
+          <h6>Prasadham Chart</h6>
+          <div>
+            <div class="d-flex justify-content-left align-items-center" *ngIf="sevaChartData.length !== 0">
+              <span class="me-2">Total Amount :</span>
+              <h6>₹{{totalAmountPrasadham}} </h6>
+            </div>
+          </div>
+        </div>
+        <div class="grid_body">
+          <div class="date-picker-section">
+            <table class="table table-bordered table-striped" *ngIf="prasadhamChartData.length > 0">
+              <thead>
+                <tr>
+                  <th>Payment Mode</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of prasadhamChartData">
+                  <td>{{ item.paymentMode }}</td>
+                  <td>₹{{ item.amount }}</td>
+                  <td>{{ item.createdOn | date }}</td>
+                  <td>{{ item.type }}</td>
+                  <td>{{ item.ticketsQty }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="no-data-available" *ngIf="prasadhamChartData.length === 0">No data available</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Donation Chart -->
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
+      <div class="grid_main">
+        <div class="grid_header d-flex justify-content-between align-items-center">
+          <h6>Donation Chart</h6>
+          <div>
+            <div class="d-flex justify-content-left align-items-center" *ngIf="sevaChartData.length !== 0">
+              <span class="me-2">Total Amount :</span>
+              <h6>₹{{totalAmountDonation}} </h6>
+            </div>
+          </div>
+        </div>
+        <div class="grid_body">
+          <div class="date-picker-section">
+            <table class="table table-bordered table-striped" *ngIf="donationChartData.length > 0">
+              <thead>
+                <tr>
+                  <th>Payment Mode</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Type</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of donationChartData">
+                  <td>{{ item.paymentMode }}</td>
+                  <td>₹{{ item.amount }}</td>
+                  <td>{{ item.createdOn | date }}</td>
+                  <td>{{ item.type }}</td>
+
+                </tr>
+              </tbody>
+            </table>
+            <p class="no-data-available" *ngIf="donationChartData.length === 0">No data available</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Darshanam Chart -->
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
+      <div class="grid_main">
+        <div class="grid_header d-flex justify-content-between align-items-center">
+          <h6>Darshanam Chart</h6>
+          <div>
+            <div class="d-flex justify-content-left align-items-center" *ngIf="sevaChartData.length !== 0">
+              <span class="me-2">Total Amount :</span>
+              <h6>₹{{totalAmountDarshanam}} </h6>
+            </div>
+          </div>
+        </div>
+        <div class="grid_body">
+          <div class="date-picker-section">
+            <table class="table table-bordered table-striped" *ngIf="darshanamChartData.length > 0">
+              <thead>
+                <tr>
+                  <th>Payment Mode</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of darshanamChartData">
+                  <td>{{ item.paymentMode }}</td>
+                  <td>₹{{ item.amount }}</td>
+                  <td>{{ item.createdOn | date }}</td>
+                  <td>{{ item.type }}</td>
+                  <td>{{ item.ticketsQty }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="no-data-available" *ngIf="darshanamChartData.length === 0">No data available</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Total Amount Footer (Combined)
+  <div class="row mt-3">
+    <div class="col-12 text-end">
+      <h6><strong>Total Amount (Seva + Prasadham): ₹{{ totalAmount }}</strong></h6>
+    </div>
+  </div>
+</div> -->

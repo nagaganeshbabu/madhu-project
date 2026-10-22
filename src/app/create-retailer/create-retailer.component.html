@@ -1,0 +1,138 @@
+<div class="add-admin-page">
+    <div class="grid_main">
+        <div class="grid_header">
+            <h6>{{ isEdit ? 'Edit Retailer' : 'Create Retailer' }}</h6>
+        </div>
+
+        <div class="grid_body">
+            <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && submit(masterDistrubutorDto)">
+                <div class="row">
+                    <!-- First Name -->
+                    <div class="col-5 mb-3">
+                        <label class="myLabel">First Name</label>
+                        <input type="text" class="form-control" name="firstName"
+                            [(ngModel)]="masterDistrubutorDto.firstName" #firstName="ngModel" required
+                            pattern="^[A-Za-z ]+$" [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" />
+                        <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+                            <div *ngIf="firstName.errors?.['required']">First Name is required</div>
+                            <div *ngIf="firstName.errors?.['pattern']">Only alphabets allowed</div>
+                        </div>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="col-5 mb-3">
+                        <label class="myLabel">Last Name</label>
+                        <input type="text" class="form-control" name="lastName"
+                            [(ngModel)]="masterDistrubutorDto.lastName" #lastName="ngModel" required
+                            pattern="^[A-Za-z ]+$" [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" />
+                        <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+                            <div *ngIf="lastName.errors?.['required']">Last Name is required</div>
+                            <div *ngIf="lastName.errors?.['pattern']">Only alphabets allowed</div>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-5 mb-3">
+                        <label class="myLabel">Email Id</label>
+                        <input type="email" class="form-control" name="emailId"
+                            [(ngModel)]="masterDistrubutorDto.emailId" #emailId="ngModel" required
+                            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                            [ngClass]="{ 'is-invalid': f.submitted && emailId.invalid }" />
+                        <div *ngIf="f.submitted && emailId.invalid" class="invalid-feedback">
+                            <div *ngIf="emailId.errors?.['required']">Email is required</div>
+                            <div *ngIf="emailId.errors?.['pattern']">Enter a valid email</div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="col-5 mb-3">
+                        <label class="myLabel">Mobile Number</label>
+                        <input type="text" class="form-control" name="mobileNumber"
+                            [(ngModel)]="masterDistrubutorDto.mobileNumber" #mobileNumber="ngModel" required
+                            pattern="^[0-9]{10}$" [ngClass]="{ 'is-invalid': f.submitted && mobileNumber.invalid }" />
+                        <div *ngIf="f.submitted && mobileNumber.invalid" class="invalid-feedback">
+                            <div *ngIf="mobileNumber.errors?.['required']">Mobile number is required</div>
+                            <div *ngIf="mobileNumber.errors?.['pattern']">Enter a valid 10-digit number</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                
+
+           <div class="col-5 mb-3">
+            <label class="myLabel">Commission Percentage %</label>
+
+            <input type="text" class="form-control" name="percentage"
+              [(ngModel)]="masterDistrubutorDto.percentage" #percentage="ngModel" required
+              pattern="^(100(\.0{1,2})?|[0-9]{1,2}(\.[0-9]{1,2})?)$"
+              [ngClass]="{ 'is-invalid': f.submitted && percentage.invalid }" />
+
+            <div *ngIf="f.submitted && percentage.invalid" class="invalid-feedback">
+              <div *ngIf="percentage.errors?.['required']">
+                Percentage is required
+              </div>
+              <div *ngIf="percentage.errors?.['pattern']">
+                Enter a valid percentage (0–100)
+              </div>
+            </div>
+          </div>
+                     
+                  
+
+                    <!-- Aadhaar Card -->
+                    <div class="col-5 mb-3">
+                        <label class="myLabel">KYC Aadhaar Card</label>
+                        <input type="file" name="kycAadharCardDetails" class="form-control"
+                            (change)="onAadharChange($event)" [required]="!isEdit" #kycAadharCardDetails="ngModel"
+                            ngModel [ngClass]="{ 'is-invalid': f.submitted && kycAadharCardDetails.invalid }" />
+                        <div *ngIf="f.submitted && kycAadharCardDetails.invalid" class="invalid-feedback">
+                            Aadhaar card is required
+                        </div>
+                        <div *ngIf="masterDistrubutorDto.kycAadharCardName!==null">{{
+                            masterDistrubutorDto.kycAadharCardName }}</div>
+                    </div>
+
+                    <!-- PAN Card -->
+                    <div class="col-5 mb-3">
+                        <label class="myLabel">KYC PAN Card</label>
+                        <input type="file" name="kycPanCardDetails" class="form-control" (change)="onPanChange($event)"
+                            [required]="!isEdit" #kycPanCardDetails="ngModel" ngModel
+                            [ngClass]="{ 'is-invalid': f.submitted && kycPanCardDetails.invalid }" />
+                        <div *ngIf="f.submitted && kycPanCardDetails.invalid" class="invalid-feedback">
+                            PAN card is required
+                        </div>
+                        <div *ngIf="masterDistrubutorDto.kycPanCardName!==null">{{ masterDistrubutorDto.kycPanCardName
+                            }}</div>
+                    </div>
+
+                      <div class="col-5 mb-3">
+            <label class="myLabel">Type</label>
+           <ng-select [items]="tfaList" bindLabel="name" bindValue="id"
+              placeholder="Select Type"
+              [(ngModel)]="masterDistrubutorDto.type" name="type"
+              #type="ngModel"
+              required
+              [ngClass]="{ 'is-invalid': f.submitted && type.invalid }">
+            </ng-select>
+            <div *ngIf="f.submitted && type.invalid" class="invalid-feedback">
+              Please select type option
+            </div>
+          </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="row justify-content-end align-items-center mt-3">
+                    <div class="col-auto button-wrapper">
+                        <button type="button" class="btn btn-danger btn-cancel cButton"
+                            routerLink="/retailers-list">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-success btn-create cButton" *ngIf="!isEdit">Create</button>
+                        <button type="submit" class="btn btn-primary btn-update cButton" *ngIf="isEdit">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

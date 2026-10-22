@@ -1,0 +1,113 @@
+<app-main >
+</app-main>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+</ngx-spinner>
+
+<!-- Modal -->
+<div class="modal fade" id="WalletLoadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+                    <span>
+                        <i class="fa-solid fa-wallet"></i>
+                    </span>
+                    <br>
+                    <span>Wallet Load</span>
+                </h1>
+                <button type="button" class="btn-close text-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                 <form #f="ngForm"  (ngSubmit)="f.form.valid && onSubmit(payInTranscationDto)">
+               <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="mb-3">
+                        <label for="exampleInputName1" class="form-label">Name</label>
+                        <input type="text" class="form-control" name="configureAgentCount"
+              [(ngModel)]="payInTranscationDto.customerName" #customerName="ngModel" required
+                  [ngClass]="{ 'is-invalid': f.submitted && customerName.errors }"/>
+           <div *ngIf="f.submitted && customerName.errors" class="invalid-feedback">
+                <div *ngIf="customerName.errors['required']">Name is required</div>
+              </div>
+                    </div>
+                      <div class="mb-3">
+                        <label for="exampleInputamount1" class="form-label">Email</label>
+                          <input type="text" class="form-control" name="emailId"
+              [(ngModel)]="payInTranscationDto.emailId" #emailId="ngModel" required
+                  [ngClass]="{ 'is-invalid': f.submitted && emailId.errors }"/>
+           <div *ngIf="f.submitted && emailId.errors" class="invalid-feedback">
+                <div *ngIf="emailId.errors['required']">EmailId is required</div>
+              </div>
+
+
+
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputNumber1" class="form-label">Mobile Number</label>
+                          <input type="text" class="form-control" name="mobileNumber"
+              [(ngModel)]="payInTranscationDto.mobileNumber" #mobileNumber="ngModel" required
+                  [ngClass]="{ 'is-invalid': f.submitted && mobileNumber.errors }"/>
+           <div *ngIf="f.submitted && mobileNumber.errors" class="invalid-feedback">
+                <div *ngIf="mobileNumber.errors['required']">mobileNumber is required</div>
+              </div>
+
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputamount1" class="form-label">Amount</label>
+                         <input type="text" class="form-control" name="amount"
+              [(ngModel)]="payInTranscationDto.amount" #amount="ngModel" required
+                  [ngClass]="{ 'is-invalid': f.submitted && amount.errors }"/>
+           <div *ngIf="f.submitted && amount.errors" class="invalid-feedback">
+                <div *ngIf="amount.errors['required']">amount is required</div>
+              </div>
+                    </div>
+                  
+                      <div class="mb-3">
+                        <label for="exampleInputamount1" class="form-label">Info</label>
+                          <input type="text" class="form-control" name="infoType"
+              [(ngModel)]="payInTranscationDto.infoType" #infoType="ngModel" required
+                  [ngClass]="{ 'is-invalid': f.submitted && infoType.errors }"/>
+           <div *ngIf="f.submitted && infoType.errors" class="invalid-feedback">
+                <div *ngIf="infoType.errors['required']">infoType is required</div>
+              </div>
+
+                    </div>
+
+                      <div class="mb-3">
+                        <label for="exampleInputamount1" class="form-label">Card Type</label>
+                         <ng-select [items]="paymentModes" 
+                            placeholder="Select Card Type" [(ngModel)]="payInTranscationDto.paymentMode"
+                            name="paymentMode" #paymentMode="ngModel" required
+                            [ngClass]="{ 'is-invalid': f.submitted && paymentMode.invalid }">
+                        </ng-select>
+                                  <div *ngIf="f.submitted && paymentMode.errors" class="invalid-feedback">
+                <div *ngIf="paymentMode.errors['required']">paymentMode is required</div>
+              </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleInputamount1" class="form-label">Payment PayIn Gateway</label>
+                        <ng-select [items]="paymentGatewaysList" bindLabel="payName" bindValue="payId"
+                            placeholder="Select PayIn Gateway" [(ngModel)]="payInTranscationDto.payInId"
+                            name="payInDetailsId" #payInId="ngModel" required
+                            [ngClass]="{ 'is-invalid': f.submitted && payInId.invalid }">
+                        </ng-select>
+                                <div *ngIf="f.submitted && payInId.errors" class="invalid-feedback">
+                <div *ngIf="payInId.errors['required']">PayInId is required</div>
+              </div>
+                    </div>
+                </div>
+                   <div class="modal-footer justify-content-between align-items-center">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"  (click)="resetForm(f)" >Cancel</button>
+                <button type="submit" class="btn btn-success">Proceed</button>
+            </div>
+            </form>
+            
+            </div>
+         
+              
+              
+        </div>
+    </div>
+</div>

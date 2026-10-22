@@ -1,0 +1,75 @@
+<div class="add-admin-page">
+    <div class="grid_main">
+        <div class="grid_header">
+            <h6>Payin Commericals Slabs</h6>
+        </div>
+
+        <div class="grid_body">
+            <form #commericalsForm="ngForm" (ngSubmit)="onSubmit(commericalsForm)">
+                <div class="row align-items-end payout-row">
+                    <div class="col-md-3">
+                        <label class="myLabel">PayIn's List</label>
+                        <ng-select [items]="paymentGatewaysList" bindLabel="payName" bindValue="payId"
+                            placeholder="Select PayIn Gateway" [(ngModel)]="commericalsDto.payInDetailsId"
+                            name="payInDetailsId" #payInDetailsId="ngModel" required
+                            [ngClass]="{ 'is-invalid': commericalsForm.submitted && payInDetailsId.invalid }">
+                        </ng-select>
+                        <div *ngIf="commericalsForm.submitted && payInDetailsId.invalid" class="invalid-feedback">
+                            Please Select PayIn Type
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <label class="myLabel">Payment Method</label>
+                        <ng-select [items]="paymentList" placeholder="Select Payment Method"
+                            [(ngModel)]="commericalsDto.paymentMode" name="paymentMode" #paymentMode="ngModel" required
+                            [ngClass]="{ 'is-invalid': commericalsForm.submitted && paymentMode.invalid }">
+                        </ng-select>
+                        <div *ngIf="commericalsForm.submitted && paymentMode.invalid" class="invalid-feedback">
+                            Please Select Payment Mode
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-3">
+                        <label class="myLabel">Fee</label>
+                        <input type="text" class="form-control" name="fee" [(ngModel)]="commericalsDto.fee"
+                            #fee="ngModel" required
+                            [ngClass]="{ 'is-invalid': commericalsForm.submitted && fee.invalid }" />
+                        <div *ngIf="commericalsForm.submitted && fee.invalid" class="invalid-feedback">
+                            <div *ngIf="fee.errors?.['required']">Platform Fee is required</div>
+                        </div>
+                    </div>
+
+                        <div class="col-md-3">
+                        <label class="myLabel">Type</label>
+                        <ng-select [items]="txType"
+                            placeholder="Select Type" [(ngModel)]="commericalsDto.type"
+                            name="type" #type="ngModel" required
+                            [ngClass]="{ 'is-invalid': commericalsForm.submitted && type.invalid }">
+                        </ng-select>
+                        <div *ngIf="commericalsForm.submitted && type.invalid" class="invalid-feedback">
+                            Please Select type
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row justify-content-end align-items-center mt-3">
+                    <div class="col-auto button-wrapper">
+                        <button type="button" class="btn btn-danger btn-cancel cButton"
+                            routerLink="/commericals-payin-list">
+                            Cancel
+                        </button>
+                        <button  *ngIf="!isEdit"  type="submit" class="btn btn-success btn-create cButton">Create</button>
+                           <button *ngIf="isEdit" type="submit" class="btn btn-success btn-create cButton">Update</button>
+                      
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

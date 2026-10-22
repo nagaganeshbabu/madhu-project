@@ -1,0 +1,156 @@
+<div class="master-distributor-list">
+    <div class="grid_main">
+        <div class="grid_header">
+            <h6>Retailers List</h6>
+            <button  *ngIf="id==='2'" class="btn btn-primary cButton add__btn"
+             [routerLink]="['/create-retailer']">
+                <span><i class="fas fa-plus"></i></span>
+            </button>
+        </div>
+
+        <div class="grid_body">
+            <table class=" table-responsive table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>RID</th>
+                        <th>Name</th>
+                        <th>EmailId</th>
+                        <th>MobileNumber</th>
+                      <th>MID</th>
+                      <th>DID</th>
+                     
+                        <th>Blocked Status</th>
+                       <th>Status</th>
+                        <th>Created ON</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let distributor of retailerList
+          | paginate: { itemsPerPage: sharedService.tableSize, currentPage: sharedService.page, totalItems: sharedService.totalPages }">
+                        <td>{{ distributor.retailerId }}</td>
+                        <td>{{ distributor.firstName }} {{ distributor.lastName }}</td>
+                        <td>{{ distributor.emailId }}</td>
+                        <td>{{ distributor.mobileNumber }}</td>   
+                        <td>{{distributor.masterDistrubutorId}}</td>
+                        <td>{{distributor.distrubutorId}}</td>
+                        <td>
+                            <span
+                                [ngClass]="{ 'text-danger': distributor.isBlocked === 'y', 'text-success': distributor.isBlocked === 'n' }">
+                                {{ distributor.isBlocked === 'y' ? 'Blocked' : 'Unblocked' }}
+                            </span>
+                        </td>
+
+                          <td>
+                            <span
+                                [ngClass]="{ 'text-success': distributor.isActive === 'y', 'text-danger': distributor.isActive === 'n' }">
+                                {{ distributor.isActive === 'y' ? 'Active' : 'Inactive' }}
+                            </span>
+                        </td>
+                        <td>{{ distributor.createdOn | date: 'yyyy-MM-dd ' }}</td>
+                        <td>
+                            <div class="d-flex justify-content-left align-items-center">
+                                <a class="" [routerLink]="['/create-retailer',distributor.retailerId]">
+                                    <span class="edit_icon">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </span>
+                                </a>
+
+                                <span *ngIf="distributor.isBlocked === 'n' "
+                                    (click)="block(distributor.retailerId,'y')" style="cursor:pointer"><i
+                                        class="fas fa-ban text-success fs-6 ms-2"></i>
+                                    </span>
+                                <span *ngIf="distributor.isBlocked === 'y' "
+                                    (click)="block(distributor.retailerId,'n')" style="cursor:pointer"><i
+                                        class="fas fa-ban text-danger fs-6 ms-2"></i></span>
+<span (click)="openWalletLoadModal(distributor)"
+      style="cursor:pointer">
+  <i class="fa-solid fa-credit-card text-warning fs-6 ms-2"></i>
+</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="text-center mt-3" *ngIf="sharedService.totalPages >= 1">
+                <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+                </pagination-controls>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="PAYIN" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+
+                    <span>PayIn Payment Gateways</span>
+                </h1>
+                <button type="button" class="btn-close text-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+   <table class=" table-responsive table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>PayIn Name</th>
+      
+        <th>Status</th>
+      </tr>
+    </thead>
+
+   <tbody>
+  <tr *ngFor="let gateway of paymentGatewaysList">
+    <td>{{ gateway.payName }}</td>
+<!--
+      <span
+        class="badge"
+        [ngClass]="{
+          'bg-success': gateway.isActive === 'y',
+          'bg-danger': gateway.isActive === 'n'
+        }">
+        {{ gateway.isActive === 'y' ? 'Active' : 'Inactive' }}
+      </span>
+      -->
+    <td>
+       <a *ngIf="gateway.isActive === 'n'" 
+       (click)="activateOrDeactivate(gateway.payoutId,selectedRetailer,'y')" > 
+                    <span class="edit_icon">
+                      <i class="fa fa-toggle-off" aria-hidden="true"></i>
+                    </span>
+                  
+                  </a>
+                  <a *ngIf="gateway.isActive === 'y'"  
+                  (click)="activateOrDeactivate(gateway.payoutId,selectedRetailer,'n')" >  
+                    <span class="edit_icon">
+                      <i class="fa fa-toggle-on" aria-hidden="true"></i>
+                    </span>
+                  </a>
+    </td>
+  </tr>
+
+  <!-- Optional: No Data -->
+  <tr *ngIf="paymentGatewaysList.length === 0">
+    <td colspan="2" class="text-center text-muted">
+      No PayIn Gateways Found
+    </td>
+  </tr>
+</tbody>
+
+
+  </table>
+
+</div>
+
+
+
+        </div>
+    </div>
+</div>
+
+

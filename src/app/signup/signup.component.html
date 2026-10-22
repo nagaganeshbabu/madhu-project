@@ -1,0 +1,93 @@
+<div class="row login sign-up">
+  <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="bg-white p-5 rounded-5 col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 m-auto sign-up-inner">
+      <div class="grid_body auth-card">
+        <div class="auth-avatar d-none">
+          <img
+            src="https://pluspng.com/img-png/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png"
+            alt="user" class="user-image">
+        </div>
+        <div class="">
+          <form name="form" #f="ngForm" (ngSubmit)="f.valid && !isUserNameExists && signUp(userData)">
+            <div class="row gy-3">
+              <div class="col-12 sign-up-head mt-0">
+                <h1>SignUp</h1>
+              </div>
+              <div class="col-6">
+                <label for="fName">First Name:</label>
+                <input type="text" name="fName" class="form-control" placeholder="First Name"
+                  [(ngModel)]="userData.firstName" #fName="ngModel" required
+                  [ngClass]="{ 'is-invalid': f.submitted && fName.errors }" />
+                <div *ngIf="f.submitted && fName.errors" class="invalid-feedback">
+                  <div *ngIf="fName.errors['required']">First Name is required</div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <label for="lName">Last Name:</label>
+                <input type="text" name="lName" class="form-control" placeholder="Last Name"
+                  [(ngModel)]="userData.lastName" #lName="ngModel" required
+                  [ngClass]="{ 'is-invalid': f.submitted && lName.errors }" />
+                <div *ngIf="f.submitted && lName.errors" class="invalid-feedback">
+                  <div *ngIf="lName.errors['required']">Last Name is required</div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <label for="mobileNumber">Mobile Number:</label>
+                <input type="text" name="mobileNumber" class="form-control" placeholder="Phone"
+                  [(ngModel)]="userData.mobileNumber" #mobileNumber="ngModel" required
+                  [ngClass]="{ 'is-invalid': f.submitted && mobileNumber.errors }" />
+                <div *ngIf="f.submitted && mobileNumber.errors" class="invalid-feedback">
+                  <div *ngIf="mobileNumber.errors['required']">Phone is required</div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <label for="emailId">Email:</label>
+                <input type="email" name="emailId" class="form-control" placeholder="Email"
+                  [(ngModel)]="userData.emailId" #emailId="ngModel" required
+                  [ngClass]="{ 'is-invalid': f.submitted && emailId.errors }" />
+                <div *ngIf="f.submitted && emailId.errors" class="invalid-feedback">
+                  <div *ngIf="emailId.errors['required']">Email is required</div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <label for="role">Role:</label>
+                <ng-select [items]="kycStatus1" bindLabel="name" bindValue="id" [(ngModel)]="userData.role" name="role"
+                  #role="ngModel" [ngClass]="{ 'is-invalid': f.submitted && role.errors }" [clearable]="false"
+                  placeholder="Select role" required>
+                </ng-select>
+
+                <!-- Error Message -->
+                <div *ngIf="f.submitted && role.errors" class="invalid-feedback d-block">
+                  <div *ngIf="role.errors?.required">Role is required</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <label>Password:</label>
+                <input type="password" name="password" class="form-control" [(ngModel)]="userData.password"
+                  #password="ngModel" required />
+              </div>
+              <div class="col-6">
+                <label>Confirm Password:</label>
+                <input type="password" name="confirmPassword" class="form-control"
+                  [(ngModel)]="userData.confirmPassword" [mustMatch]="'password'" #confirmPassword="ngModel" required />
+                <div *ngIf="confirmPassword.errors?.mustMatch && confirmPassword.touched" class="text-danger">
+                  Passwords do not match
+                </div>
+              </div>
+              <div class="col-12 text-center mt-4">
+                <input type="submit" class="btn btn-success signup_btn" value="Sign Up" />
+              </div>
+              <div class="col-12 text-center my-text text-black mt-2 ac_text">
+                Already have an account? <a routerLink="/login">Login</a> here.
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

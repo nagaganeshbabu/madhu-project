@@ -1,0 +1,41 @@
+<div class="d-flex justify-content-left align-items-center profile_name" #dropdownContainer>
+  <div class="dropdown me-2" [class.show]="dropdownOpen">
+    <div 
+      class="d-flex align-items-center" 
+      (click)="toggleDropdown($event)" 
+      style="cursor: pointer;"
+    >
+      <span  class="rounded-circle user-avatar" width="30" height="30">
+        <i class="fas fa-user"></i>
+      </span>
+    </div>
+
+    <ul class="dropdown-menu" [class.show]="dropdownOpen">
+      <li>
+        <a 
+          routerLink="/profile" 
+          routerLinkActive="active" 
+          class="neumorphic-button dropdown-item"
+          (click)="closeDropdown()"
+        >
+          Profile
+        </a>
+      </li>
+      <li>
+        <a 
+          routerLink="/login" 
+          routerLinkActive="active" 
+          class="neumorphic-button dropdown-item"
+          (click)="closeDropdown()"
+        >
+          Logout
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- <div class="col-auto">
+    <span>Chaitanya</span>
+  </div> -->
+</div>
+
+

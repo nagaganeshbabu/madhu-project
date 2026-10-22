@@ -1,0 +1,25 @@
+<div class="main_page">
+  <div class="header_body">
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" 
+ template="<img src='../assets/loading.gif' class='loading_icon' alt='loading_icon' />"
+>
+</ngx-spinner>
+    <div class="sidebar_nav"
+        *ngIf="router.url !== '/login' &&  router.url !== '/' && router.url !== '/sign-up' && router.url!=='/forgot-password'  && router.url!=='/reset-password'">
+        <app-sidenav></app-sidenav>
+      </div>
+    <div class="menu-body">
+      <div class="app-header"
+      *ngIf="router.url !== '/login' && router.url !== '/' && router.url !== '/sign-up' && router.url!=='/forgot-password' && router.url!=='/reset-password' ">
+      <app-header></app-header>
+    </div>
+      <div class="content" [ngClass]="isSidebarVisible ? 'with-sidebar' : 'without-sidebar'"
+        *ngIf="!(router.url === '/login' || router.url === '/sign-up' || router.url ==='/forgot-password' || router.url ==='/reset-password')">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet
+  *ngIf="router.url === '/login' || router.url === '/sign-up' ||  router.url ==='/forgot-password' ||router.url ==='/reset-password'"></router-outlet>

@@ -1,0 +1,69 @@
+<div class="master-distributor-list">
+  <div class="grid_main">
+    <div class="grid_header">
+      <h6>Master Distributor List</h6>
+      <button class="btn btn-primary cButton add__btn" [routerLink]="['/create-master-distrubutor']">
+        <span><i class="fas fa-plus"></i></span>
+      </button>
+    </div>
+
+    <div class="grid_body">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Active</th>
+            <th>Blocked</th>
+            <th>Created On</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let distributor of masterDistributors
+          | paginate: { itemsPerPage: sharedService.tableSize, currentPage: sharedService.page, totalItems: sharedService.totalPages }">
+            <td>{{ distributor.masterDistributorDetailId }}</td>
+            <td>{{ distributor.firstName }} {{ distributor.lastName }}</td>
+            <td>{{ distributor.emailId }}</td>
+            <td>{{ distributor.mobileNumber }}</td>
+            <td>
+              <span
+                [ngClass]="{ 'text-success': distributor.isActive === 'y', 'text-danger': distributor.isActive === 'n' }">
+                {{ distributor.isActive === 'y' ? 'Active' : 'Inactive' }}
+              </span>
+            </td>
+            <td>
+              <span
+                [ngClass]="{ 'text-danger': distributor.isBlocked === 'y', 'text-success': distributor.isBlocked === 'n' }">
+                {{ distributor.isBlocked === 'y' ? 'Blocked' : 'Unblocked' }}
+              </span>
+            </td>
+            <td>{{ distributor.createdOn | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+            <td>
+              <div class="d-flex justify-content-left align-items-center">
+                <a class="" [routerLink]="['/create-master-distrubutor',distributor.masterDistributorDetailId]">
+                  <span class="edit_icon">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </span>
+                </a>
+          
+               <span *ngIf="distributor.isBlocked === 'n' " (click)="block(distributor.masterDistributorDetailId,'y')" style="cursor:pointer"><i class="fas fa-ban text-success fs-6 ms-2"></i></span>
+                 <span  *ngIf="distributor.isBlocked === 'y' "  (click)="block(distributor.masterDistributorDetailId,'n')" style="cursor:pointer"><i class="fas fa-ban text-danger fs-6 ms-2"></i></span>
+              
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ✅ Pagination section -->
+      <div class="text-center mt-3" *ngIf="sharedService.totalPages >= 1">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

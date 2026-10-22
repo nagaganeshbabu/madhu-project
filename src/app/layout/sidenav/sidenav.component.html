@@ -1,0 +1,103 @@
+<div class="sidebar sidebar__main" [ngClass]="{ 'showSidebar': isSidebarVisible, 'hideSidebar': !isSidebarVisible }" [@fadeInOut]>
+  <div class="login_user">
+    <!-- <span class="greetings-sec text-center">Welcome</span> -->
+    <span class="login-img text-center d-inline-block">
+      <img src="../assets/img/user-man.png" alt="" class="">
+    </span>
+    <span class="login-user-name text-center">
+      {{name}}
+    </span>
+  </div>
+  <ul>
+   <li>
+  <a
+    *ngIf="dashboardRoute"
+    [routerLink]="dashboardRoute"
+    routerLinkActive="active"
+  >
+    <span class="menu-icon">
+      <i class="fa-solid fa-bars"></i>
+    </span>
+    <span class="menu-text">Dashboard</span>
+  </a>
+</li>
+
+    <li *ngIf="isRoleAdmin === '0'">
+     
+      <a routerLink="/master-distrubutors" routerLinkActive="active">
+        <span class="menu-icon">
+          <i class="fa-solid fa-user-tie"></i>
+        </span>
+        <span class="menu-text">Master Distrubutors</span>
+      </a>
+    </li>
+    <li *ngIf="isRoleAdmin === '0' ||isRoleAdmin ==='1'">
+      
+      <a routerLink="/distrubutors-list" routerLinkActive="active">
+        <span class="menu-icon">
+          <i class="fa-regular fa-user"></i>
+        </span>
+        <span class="menu-text">Distrubutors</span>
+      </a>
+    </li>
+    <li *ngIf="isRoleAdmin === '0' || isRoleAdmin==='2' || isRoleAdmin==='1' ">
+     
+      <a routerLink="/retailers-list" routerLinkActive="active">
+        <span class="menu-icon">
+          <i class="fa-solid fa-user"></i>
+        </span>
+        <span class="menu-text">Retailers</span>
+      </a>
+    </li>
+    <li *ngIf="isRoleAdmin === '0'">
+     
+      <a routerLink="/payment-gateway-list" routerLinkActive="active">
+        <span class="menu-icon">
+          <i class="fa-solid fa-money-bill"></i>
+        </span>
+        <span class="menu-text">PayIn Gateways List</span>
+      </a>
+    </li>
+      <li *ngIf="isRoleAdmin === '0'">
+     
+      <a routerLink="/commericals-payin-list" routerLinkActive="active">
+        <span class="menu-icon">
+          <i class="fa-solid fa-money-bill"></i>
+        </span>
+        <span class="menu-text">PayIn Commericals List</span>
+      </a>
+    </li>
+
+      <li *ngIf="isRoleAdmin === '0'">
+     
+      <a routerLink="/payment-payout-gateways-list" routerLinkActive="active">
+        <span class="menu-icon">
+          <i class="fa-solid fa-money-bill"></i>
+        </span>
+        <span class="menu-text">Payout Gateways List</span>
+      </a>
+    </li>
+
+    <li  *ngIf="isRoleAdmin === '0'">
+      
+      <a routerLink="#" routerLinkActive="active">
+        <span class="menu-icon">
+          <i class="fa fa-arrow-down" aria-hidden="true"></i>
+        </span>
+        <span class="menu-text">PayIn Reports PG</span>
+      </a>
+    </li>
+    <li *ngIf="isRoleAdmin === '0'">
+      
+      <a routerLink="#" routerLinkActive="active">
+        <span class="menu-icon">
+          <i class="fa fa-arrow-up" aria-hidden="true"></i>
+        </span>
+        <span class="menu-text">PayOut Reports PG</span>
+      </a>
+    </li>
+  
+
+
+  </ul>
+</div>
